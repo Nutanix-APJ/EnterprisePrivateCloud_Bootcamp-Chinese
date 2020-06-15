@@ -243,7 +243,7 @@ Carol需要支持在Fiesta团队中工作的两种类型的用户：需要为测
 
    - **Role Name** - *Initials*\ -SmoothOperator
    - **Description** - Limited operator accounts
-   - **App** - No Access
+   - **App** - Set custom permissions
    - **VM** - Edit Access
    -  **不要** 选择 **Allow VM Creation**
 
