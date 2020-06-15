@@ -306,7 +306,7 @@ Nutanix Calm允许您跨私有（AHV，ESXi）和公共云（AWS，Azure，GCP�
 
    - 点击 :fa:`star` 标记 *Primary* 作为默认的网络。
 
-   - 在 **Users, Groups, and Roles**下, 选择 **+ User**
+   - 在 **Users, Groups, and Roles** 下, 选择 **+ User**
 
       - **Name** - SSP Developers
       - **Role** - Developer
