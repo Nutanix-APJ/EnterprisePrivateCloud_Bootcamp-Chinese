@@ -45,7 +45,7 @@ Prism Ops使用X-FIT机器学习来检测和监视在托管集群中运行的VM�
 
    .. figure:: images/ppro_58.png
 
-#. 现在，您将在VM列表视图中查看Efficiency聚集视图，并详细了解为何Prism Pro标记了这些VM。 您可以将鼠标悬停在Efficiency detail列中的文本以查看完整的描述。
+#. 现在，您将在VM列表视图中查看Efficiency聚焦视图，并详细了解为何Prism Pro标记了这些VM。 您可以将鼠标悬停在Renson列中的文本以查看完整的描述。
 
    .. figure:: images/ppro_59.png
 
@@ -108,6 +108,7 @@ Prism Ops使用X-FIT机器学习来检测和监视在托管集群中运行的VM�
    .. figure:: images/rs18.png
 
 #. 使用 **Parameters** 链接来填充从Webhook触发器公开的 **entity1** 参数。 调用方将传入VM以充当entity1。 根据以下屏幕设置其余字段。 然后点击 **Add Action** 以添加下一个操作。
+
    .. figure:: images/rs19.png
 
 #. Select the **Resolve Alert** action.
@@ -129,6 +130,7 @@ Prism Ops使用X-FIT机器学习来检测和监视在托管集群中运行的VM�
      欢迎您撰写您自己的主题信息。 以上仅是示例。 您可以使用 “parameters” 来丰富消息。
 
    .. figure:: images/rs20.png
+
 #. 最后，我们想返回工单服务以解决工单服务中的工单。 单击 **Add Action** 以添加REST API操作。 填写以下值，替换URL字段中的 <PrismOpsLabUtilityServer_IP_ADDRESS> 。
 
    - **Method:** PUT
@@ -137,14 +139,17 @@ Prism Ops使用X-FIT机器学习来检测和监视在托管集群中运行的VM�
    - **Request Header:** Content-Type:application/json;charset=utf-8
 
    .. figure:: images/rs21.png
+
 #. 单击 **Save & Close** 按钮，并将其保存为名称 “*姓名缩写* - Resolve Service Ticket”。 **请确保启用 ‘Enabled’ 选项。**
 
    .. figure:: images/rs22.png
+
 #. 接下来，我们将创建一个自定义动作以在我们的第二本Playbook中使用。 点击左侧菜单中的 **Action Gallery** 。
 
    .. figure:: images/rs3c.png
 
 #. 选择 **REST API** 操作，然后从操作菜单中选择 **Clone** 操作。
+
    .. figure:: images/rs4.png
 
 #. 填写以下值，替换 *姓名缩写* 部分，并在URL字段中输入<PrismOpsLabUtilityServer_IP_ADDRESS>。 点击 **Copy** 。
@@ -156,6 +161,7 @@ Prism Ops使用X-FIT机器学习来检测和监视在托管集群中运行的VM�
    - **Request Header:** Content-Type:application/json;charset=utf-8
 
    .. figure:: images/rs5.png
+
 #. 现在，通过点击左侧菜单中的 **List** 项，切换到Playbooks列表。
 
    .. figure:: images/rs6.png

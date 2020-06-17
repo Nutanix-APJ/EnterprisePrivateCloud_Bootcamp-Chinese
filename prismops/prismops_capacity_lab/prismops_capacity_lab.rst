@@ -11,11 +11,11 @@ Prism Pro为我们的客户的日常IT操作带来了智能自动化。典型的
 实验设置
 +++++++++
 
-#. 打开您的 **Prism Central** 并导航至 **VMs** 页面。 记下 **GTSPrismOpsLabUtilityServer** 的IP地址。 在整个实验过程中，您将需要访问此IP地址。
+#. 打开您的 **Prism Central** 并导航至 **VMs** 页面。 记下 **PrismOpsLabUtilityServer** 的IP地址。 在整个实验过程中，您将需要访问此IP地址。
 
    .. figure:: images/init1.png
 
-#. 在浏览器中打开一个新标签，然后浏览至 http://`<GTSPrismOpsLabUtilityServer_IP_ADDRESS>`/alerts [example http://10.42.113.52/alerts]. 如果您是第一个使用该虚拟机的人，则可能需要登录该虚拟机。 只需填写 **Prism CentralIP** ，**Username** 和 **Password**，然后单击 **Login**。
+#. 在浏览器中打开一个新标签，然后浏览至 http://`<PrismOpsLabUtilityServer>`/alerts [example http://10.38.17.12/alerts]. 如果您是第一个使用该虚拟机的人，则可能需要登录该虚拟机。 只需填写 **Prism CentralIP** ，**Username** 和 **Password**，然后单击 **Login**。
 
    .. figure:: images/init2.png
 
@@ -23,7 +23,7 @@ Prism Pro为我们的客户的日常IT操作带来了智能自动化。典型的
 
    .. figure:: images/init2b.png
 
-#. 在另一个选项卡中，导航至http：//`<GTSPrismOpsLabUtilityServer_IP_ADDRESS>`/，从[示例http://10.42.113.52/]完成实验。 使用此URL上的UI可以完成实验。
+#. 在另一个选项卡中，导航至http：//`<PrismOpsLabUtilityServer>`/，从[示例http://10.38.17.12/]完成实验。 使用此URL上的UI可以完成实验。
 
    .. figure:: images/init3.png
 
@@ -93,7 +93,7 @@ Prism Pro的X-FIT引擎还提供了规划未来工作负载的能力，并确定
 
 现在让我们看看如何在资源不足的时候自动生成报告。我们将使用Prism Pro的简单自动化引擎X-Play。
 
-#. 使用搜索栏导航到 **Playbooks** 页面。
+#. 使用搜索栏导航到 **Operations** > **Playbook** 页面。
 
    .. figure:: images/cap1.png
 
@@ -101,11 +101,11 @@ Prism Pro的X-FIT引擎还提供了规划未来工作负载的能力，并确定
 
    .. figure:: images/cap2.png
 
-#. 选择 **Alert** 作为触发器。
+#. 选择 **Alerts Matching Criteria** 作为触发器。 使用此触发器，我们可以为符合指定条件的一个或多个警报策略触发此Playbook。
 
    .. figure:: images/cap3.png
 
-#. 搜索并选择 **Cluster running out of Memory Capacity (low runway)** 作为警报策略，因为这是我们正在寻求采取自动化步骤来生成报告的问题。
+#. 选择Specific Alert Policies单选按钮，然后在搜索框中搜索 'runway' 。 从下拉菜单中选择 **Cluster running out of storage Capacity (low runway)** ， **Cluster running out of Memory Capacity (low runway)** ,和 **Cluster running out of CPU Capacity (low runway)** ， 由于这是3个警报，因此我们希望针对存储，内存或CPU运行资源不足的情况下生成报告。
 
    .. figure:: images/cap4.png
 
@@ -113,7 +113,7 @@ Prism Pro的X-FIT引擎还提供了规划未来工作负载的能力，并确定
 
    .. figure:: images/cap5.png
 
-#. 在这种情况下，警报源实体将是生成警报的群集。 您也可以根据需要更改Runway Period。
+#. 在这种情况下，Alerts Matching Central:Source Entity将是警报生成的群集。 您也可以根据需要更改Runway Period。
 
    .. figure:: images/cap6.png
 
@@ -123,9 +123,9 @@ Prism Pro的X-FIT引擎还提供了规划未来工作负载的能力，并确定
 
 #. 填写电子邮件操作中的字段。下面是一些例子：
 
-   - **Recipient:** - 填写你的邮件地址。
-   - **Subject :** - ``Playbook {{playbook.playbook_name}} 已执行。``
-   - **Message:** - `作为警报的结果， {{trigger[0].alert_entity_info.name}}, Playbook, {{playbook.playbook_name}}, 已执行。 生成的报告将附加到此电子邮件中。``
+   - **Recipient:** - Fill in your email address.
+   - **Subject :** - ``Playbook {{playbook.playbook_name}} was executed.``
+   - **Message:** - `As a result of the alert, {{trigger[0].alert_entity_info.name}}, the playbook, {{playbook.playbook_name}}, was executed. The generated report is attached to this email.``
 
    .. note::
 
@@ -137,20 +137,28 @@ Prism Pro的X-FIT引擎还提供了规划未来工作负载的能力，并确定
 
    .. figure:: images/cap9.png
 
-#. 该实验的警报模拟部分今天无法正常触发，因此，我们将向您展示如果成功生成警报，它将是什么样。 在表格视图中，单击以打开 “*姓名缩写* - Automatically Generate Forecast Report” Playbook的详细信息
+#. 现在让我们触发工作流程。 切换到您使用 **/alerts** URL  URL [示例 10.38.17.12/alerts]在设置中打开的标签。 选择 **Memory Runway is Short** ，然后单击 **Simulate Alert**。 这将模拟 **Prism-Pro-Cluster** 的内存受限警报。
+
+   .. figure:: images/cap10.png
+
+#. 使用 **Prism Central** 控制台切换回上一个选项卡。 在表格视图中，单击以打开 “*姓名缩写* - Automatically Generate Forecast Report” Playbook的详细信息。
+
    .. figure:: images/cap11.png
 
-#. 切换到 **Plays** 标签。 如果要为该Playbook生成警报，您将在此选项卡中看到类似的Playbook。
+#. 切换到 **Plays** 选项卡，然后单击表中第一个Play的标题进行仔细查看。
 
    .. figure:: images/cap12.png
 
-#. 单击它将显示此视图。可以展开此视图中的节，以显示每个项的更多详细信息。如果有任何错误，它们也会出现在这个视图中。
+#. 可以扩展此视图中的部分以显示每个项目的更多详细信息。 如果有任何错误，这些错误也会出现在这个视图中。
 
    .. figure:: images/cap13.png
 
-#. 你也会收到这样的邮件。
+#. 查看你的邮件。 您还应该获得一封带有报告附件的电子邮件，以供您查看。 注意：在5.11中，电子邮件有时最多可能需要5分钟才能发送。
 
    .. figure:: images/cap14.png
+#. 从 **Prism Central** 中 **Delete** 或 **Disable** 您的Playbook，然后再进行其他实验。 由于有多个用户共享实验室环境，因此只要他们启用了此Playbook，他们生成的警报就可能导致您继续接收电子邮件。
+
+   .. figure:: images/cap15.png
 
 重点回顾
 .........
